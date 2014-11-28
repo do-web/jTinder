@@ -14,7 +14,7 @@ Add the css file before the HEAD tag:
 <link rel="stylesheet" type="text/css" href="css/jTinder.css">
 ```
 
-Add the fallowing before the BODY tag in your html file:
+Add the following before the BODY tag in your html file:
 ```
 <!-- jQuery lib -->
 <script type="text/javascript" src="js/jquery.min.js"></script>

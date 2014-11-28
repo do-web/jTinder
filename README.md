@@ -9,13 +9,13 @@ jTinder is a javascript library that makes rating people, products, images very 
 jTinder Installation
 -------------------------
 
-Add the css file before the </head> tag:
-
+Add the css file before the HEAD tag:
+```
 <link rel="stylesheet" type="text/css" href="css/jTinder.css">
+```
 
-
-Add the fallowing before the </body> tag in your html file:
-
+Add the fallowing before the BODY tag in your html file:
+```
 <!-- jQuery lib -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 
@@ -30,10 +30,10 @@ Add the fallowing before the </body> tag in your html file:
 
 <!-- jTinder initialization script -->
 <script>$("#tinderslide").jTinder();</script>
-
+```
 
 Add this HTML code in your body for the jTinder content:
-
+```
 <div id="tinderslide">
     <ul>
         <li class="pane1"><div class="img"></div><div>Miami Beach</div><div class="like"></div><div class="dislike"></div></li>
@@ -43,7 +43,7 @@ Add this HTML code in your body for the jTinder content:
         <li class="pane5"><div class="img"></div><div>Beach</div><div class="like"></div><div class="dislike"></div></li>
     </ul>
 </div>
-
+```
 Change the CSS (jTinder.css) for your images.
 
 
@@ -75,15 +75,15 @@ dislike - Trigger dislike for the current item.
 
 
 Example Calls:
-
+```
 $("#tinderslide").jTinder('like');
 
 $("#tinderslide").jTinder('dislike');
-
+```
 
 jTinder Option Usage Example
 -------------------------
-
+```
 $("#tinderslide").jTinder({
     onDislike: function (item) {
         alert('Dislike image ' + (item.index()+1));
@@ -97,3 +97,4 @@ $("#tinderslide").jTinder({
 	likeSelector: '.like',
 	dislikeSelector: '.dislike'
 });
+```

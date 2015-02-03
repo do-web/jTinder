@@ -26,9 +26,6 @@ Add the following before the BODY tag in your html file:
 <!-- transform2d lib -->
 <script type="text/javascript" src="js/jquery.transform2d.js"></script>
 
-<!-- hammer lib -->
-<script type="text/javascript" src="js/hammer.min.js"></script>
-
 <!-- jTinder lib -->
 <script type="text/javascript" src="js/jquery.jTinder.js"></script>
 
@@ -93,7 +90,7 @@ $("#tinderslide").jTinder({
         alert('Dislike image ' + (item.index()+1));
     },
     onLike: function (item) {
-        alert('Dislike image ' + (item.index()+1));
+        alert('Like image ' + (item.index()+1));
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,

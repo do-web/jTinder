@@ -58,6 +58,7 @@
 		},
 
 		next: function () {
+			!current_pane && $that.settings.onFinish && $that.settings.onFinish();
 			return this.showPane(current_pane - 1);
 		},
 

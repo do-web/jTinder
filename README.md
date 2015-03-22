@@ -56,6 +56,8 @@ onDislike (Optional) - Default value: null - Callback function, if a user dislik
 
 onLike (Optional) - Default value: null - Callback function if a user likes a item. Parameter assigned: The current li item.
 
+onFinish (Optional) - Default value: null - Called after clearing all items.
+
 animationRevertSpeed (Optional) - Default value: 200 - Speed in milliseconds the item reverts back to the init state.
 
 animationSpeed (Optional) - Default value: 400 - Speed in milliseconds the item go away on like/dislike.

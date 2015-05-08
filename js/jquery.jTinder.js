@@ -16,7 +16,8 @@
 			animationSpeed: 400,
 			threshold: 1,
 			likeSelector: '.like',
-			dislikeSelector: '.dislike'
+			dislikeSelector: '.dislike',
+			rotationRatio: 8,			
 		};
 
 	var container = null;
@@ -105,7 +106,7 @@
 						var pageY = typeof ev.pageY == 'undefined' ? ev.originalEvent.touches[0].pageY : ev.pageY;
 						var deltaX = parseInt(pageX) - parseInt(xStart);
 						var deltaY = parseInt(pageY) - parseInt(yStart);
-						var percent = ((100 / pane_width) * deltaX) / pane_count;
+						var percent = ((100 / pane_width) * deltaX) / $that.settings.rotationRatio;
 						posX = deltaX + lastPosX;
 						posY = deltaY + lastPosY;
 

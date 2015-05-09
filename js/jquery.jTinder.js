@@ -16,7 +16,8 @@
 			animationSpeed: 400,
 			threshold: 1,
 			likeSelector: '.like',
-			dislikeSelector: '.dislike'
+			dislikeSelector: '.dislike',
+			rotationRatio: 8,			
 		};
 
 	var container = null;
@@ -24,6 +25,7 @@
 	var $that = null;
 	var xStart = 0;
 	var yStart = 0;
+	var paneYStart = 0;
 	var touchStart = false;
 	var posX = 0, posY = 0, lastPosX = 0, lastPosY = 0, pane_width = 0, pane_count = 0, current_pane = 0;
 
@@ -88,12 +90,14 @@
 						touchStart = true;
 						xStart = ev.originalEvent.touches[0].pageX;
 						yStart = ev.originalEvent.touches[0].pageY;
+						paneYStart = $(panes.eq(current_pane)).position().top;
 					}
 				case 'mousedown':
 					if(touchStart === false) {
 						touchStart = true;
 						xStart = ev.pageX;
 						yStart = ev.pageY;
+						paneYStart = $(panes.eq(current_pane)).position().top;				
 					}
 				case 'mousemove':
 				case 'touchmove':
@@ -102,7 +106,7 @@
 						var pageY = typeof ev.pageY == 'undefined' ? ev.originalEvent.touches[0].pageY : ev.pageY;
 						var deltaX = parseInt(pageX) - parseInt(xStart);
 						var deltaY = parseInt(pageY) - parseInt(yStart);
-						var percent = ((100 / pane_width) * deltaX) / pane_count;
+						var percent = ((100 / pane_width) * deltaX) / $that.settings.rotationRatio;
 						posX = deltaX + lastPosX;
 						posY = deltaY + lastPosY;
 
@@ -153,9 +157,10 @@
 					} else {
 						lastPosX = 0;
 						lastPosY = 0;
-						panes.eq(current_pane).animate({"transform": "translate(0px,0px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
+						panes.eq(current_pane).animate({"transform": "translate(0px,"+paneYStart+"px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.likeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.dislikeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
+						paneYStart = 0
 					}
 					break;
 			}

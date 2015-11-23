@@ -58,7 +58,16 @@
 		},
 
 		next: function () {
-			return this.showPane(current_pane - 1);
+			$that.settings.onBeforeNext
+				&& $that.settings.onBeforeNext(current_pane);
+
+			//@link https://github.com/Stemlet/jTinder/commit/f3565b6f2376ebaf013306829b2b3fcfa5f4c938
+			!current_pane && $that.settings.onFinish && $that.settings.onFinish();
+			var showResult = this.showPane(current_pane - 1);
+
+			$that.settings.onAfterNext
+				&& $that.settings.onAfterNext(current_pane);
+			return showResult;
 		},
 
 		dislike: function() {

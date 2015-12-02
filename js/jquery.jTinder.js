@@ -58,7 +58,39 @@
 		},
 
 		next: function () {
-			return this.showPane(current_pane - 1);
+			// Call to onBeforeNext if available, passing the current
+			// index as an argument
+			$that.settings.onBeforeNext
+				&& $that.settings.onBeforeNext(current_pane);
+
+			//@link https://github.com/Stemlet/jTinder/commit/f3565b6f2376ebaf013306829b2b3fcfa5f4c938
+			// PR#1: Call to onFinish if available, no arguments passed
+			// PR#7: Add passing "this" to be able to call rewind on the instance.
+			!current_pane && $that.settings.onFinish && $that.settings.onFinish(this);
+			var showResult = this.showPane(current_pane - 1);
+
+			// Call to onAfterNext if available, passing the current
+			// index as an argument
+			$that.settings.onAfterNext
+				&& $that.settings.onAfterNext(current_pane);
+			return showResult;
+		},
+
+		/**
+		 * jTinder.rewind() function for looping feature.
+		 * The rewind method removes the CSS transformations from the panels
+		 * and shows them again. Additionally it rewinds the current_pane
+		 * index of the jTinder instance.
+		 * @author: Grégory Saive <greg@evias.be> (http://github.com/evias)
+		 **/
+		rewind: function() {
+			$.each(panes, function(index, panel)
+			{
+				var jqElm = $(panel);
+				jqElm.css("transform", "");
+				jqElm.show();
+				current_pane = index+1;
+			});
 		},
 
 		dislike: function() {
